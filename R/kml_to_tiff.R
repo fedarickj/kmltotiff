@@ -70,13 +70,13 @@ kml_to_tiff <- function(folder_path, boundary, export_name){
   gc()
   
   # Merge the rasters with masked zeros
-  merged_raster <- do.call(merge, resampled_rasters)
+  merged_raster <- do.call(terra::merge, resampled_rasters)
   
   gc()
   #mask raster
   masked_raster<-mask(merged_raster, boundary)
   gc()
   #write raster
-  writeRaster(masked_raster, export_location, filetype = "GTiff", overwrite = TRUE)
+  writeRaster(masked_raster, export_name, filetype = "GTiff", overwrite = TRUE)
   
 }
